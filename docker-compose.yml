@@ -1,0 +1,13 @@
+# Local PostgreSQL for running the API or the test suite against a production-like
+# database. The credentials are throwaway development defaults.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: clinic
+      POSTGRES_PASSWORD: clinic
+      POSTGRES_DB: clinic
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql:ro
